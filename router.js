@@ -22,6 +22,7 @@ router.get(`/checkout/`, findID, get.checkout);
 router.get(`/login`, get.login);
 router.get(`/admin`, isAuthenticated, get.admin);
 router.get(`/profile`, findID, get.profile);
+router.get(`/reset_password/:token`, get.reset_password);
 
 router.post(`/checkout`, findID, post.checkout);
 router.post(`/kontakt`, findID, post.kontakt)
@@ -32,7 +33,7 @@ router.post(`/zum-flughafen`, findID, post.zum_flughafen);
 router.post(`/vom-flughafen`, findID, post.vom_flughafen);
 router.post(`/password-update`, findID, post.password_update);
 router.post(`/forgot_password`, post.forgot_password);
-router.post(`/reset_password`, post.reset_password);
+router.post(`/reset_password/:token`, post.reset_password);
 
 
 

@@ -18,5 +18,6 @@ module.exports = {
     wiener_neudorf_card: require("./wiener_neudorf_card"),
     zum_flughafen: require("./zum_flughafen"),
     admin: require("./admin"),
-    profile: require("./profile")
+    profile: require("./profile"),
+    reset_password: require("./reset_password")
 };
