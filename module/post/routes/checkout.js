@@ -45,11 +45,11 @@ const router = async (req, res, next) => {
             // order get
             await db.collection("other_users").doc(o_client).collection("orders").where("o_id", "==", o_client).get().then(doc => {
                 doc.forEach(i => invoice.push(i.data()));
-            })
+            });
             // checkout get
             await db.collection("other_users").doc(o_client).collection("checkout").where("o_id", "==", o_client).get().then(doc => {
                 doc.forEach(i => invoice.push(i.data()));
-            })
+            });
         }
         await sendSms(phone, invoice);
         await sendSms_santral(phone,invoice)
