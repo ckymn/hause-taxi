@@ -8,7 +8,7 @@ const router = async (req, res, next) => {
         const data = req.body;
         const { phone, email } = req.body;
         const { _client, o_client } = req;
-        const invoice = [];
+        const invoice , siplefieldData = [];
         if (_client) {
             // booking save
             await db.collection("users").doc(_client).collection("checkout").doc().set({
@@ -51,11 +51,12 @@ const router = async (req, res, next) => {
                 doc.forEach(i => invoice.push(i.data()));
             });
         }
+        siplefieldData.push(invoice[1].state,invoice[1].email,invoice[1].city,invoice[1].land,invoice[1].phone,invoice[1].street,invoice[1].apartment)
         await sendSms(phone, invoice);
         await sendSms_santral(phone,invoice)
         await sendEmail_checkout(email, `Deine Bestellung bei ${invoice[0].here}-${invoice[0].there} Haustaxi vom ${Date(Date.now().toString())} wurde fertiggestellt`,
             [
-                invoice[0], invoice[1]
+                invoice[0], siplefieldData
             ]);
         return res.status(200).send({ status: true, message: " Save chekcout info is success." });
     } catch (error) {
