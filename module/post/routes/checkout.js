@@ -51,8 +51,8 @@ const router = async (req, res, next) => {
                 doc.forEach(i => invoice.push(i.data()));
             });
         }
-        // await sendSms(phone, invoice);
-        // await sendSms_santral(phone,invoice)
+        await sendSms(phone, invoice);
+        await sendSms_santral(phone,invoice)
         await sendEmail_checkout(email, `Deine Bestellung bei ${invoice[0].aim}-${invoice[0].arrival} Haustaxi vom ${Date(Date.now().toString())} wurde fertiggestellt`,
             [
                 invoice[0], invoice[1]
