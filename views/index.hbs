@@ -25,19 +25,60 @@
 </head>
 
 <body>
-    <h2>Welcome Hausetaxi App</h2>
-    <h1>Deine Bestellung wurde fertiggestellt.</h1>
+    <h2>Neue Kundenbestellung</h2>
+    {{#with order}}
+    <h3>{{ aim }} - {{ arrival}}</h3>
+    {{/with}}
     <table style="width:50%">
         <tr>
-            <th>Order Key</th>
-            <th>Order Value</th>
+            <th>BESTELLNAME</th>
+            <th>AUFTRAG</th>
         </tr>
-        {{#each order}}
+        {{#with order}}
         <tr>
-            <td>{{@key}}</td>
-            <td>{{this}}</td>
+            <td>ZIELORT </td>
+            <td>{{aim}}</td>
         </tr>
-        {{/each}}
+        <tr>
+            <td>Zieladresse </td>
+            <td>{{arrival}}</td>
+        </tr>
+        <tr>
+            <td>Datum </td>
+            <td>{{date}}</td>
+        </tr>
+        <tr>
+            <td>Uhrzeit </td>
+            <td>{{time}}</td>
+        </tr>
+        <tr>
+            <td>Fahrzeug </td>
+            <td>{{vehicle}}</td>
+        <tr>
+            <td>Personen </td>
+            <td>{{employee}}</td>
+        </tr>
+        <tr>
+            <td>Koffer </td>
+            <td>{{suitCase}}</td>
+        </tr>
+        <tr>
+            <td>Kindersitz </td>
+            <td>{{childSeat}}</td>
+        </tr>
+        <tr>
+            <td>Zwischensumme </td>
+            <td>{{subTotal}}</td>
+        </tr>
+        <tr>
+            <td>Gesamt </td>
+            <td>{{total}}</td>
+        </tr>
+        <tr>
+            <td>Anmerkung </td>
+            <td>{{footnate}}</td>
+        </tr>
+        {{/with}}
     </table>
 
     <h1>Rechnungsadresse</h1>
@@ -47,12 +88,40 @@
             <th>Booking Key</th>
             <th>Booking Value</th>
         </tr>
-        {{#each booking}}
+        {{#with booking}}
         <tr>
-            <td>{{@key}}</td>
-            <td>{{this}}</td>
+            <td>Name </td>
+            <td>{{name}}</td>
         </tr>
-        {{/each}}
+        <tr>
+            <td>Nachname </td>
+            <td>{{surname}}</td>
+        </tr>
+        <tr>
+            <td>Telefon </td>
+            <td>{{phone}}</td>
+        </tr>
+        <tr>
+            <td>Stadt </td>
+            <td>{{city}}</td>
+        </tr>
+        <tr>
+            <td>Straße </td>
+            <td>{{street}}</td>
+        </tr>
+        <tr>
+            <td>Bundesland </td>
+            <td>{{state}}</td>
+        </tr>
+        <tr>
+            <td>Wohnung </td>
+            <td>{{apartment}}</td>
+        </tr>
+        <tr>
+            <td>Email </td>
+            <td>{{email}}</td>
+        </tr>
+        {{/with}}
     </table>
 </body>
 

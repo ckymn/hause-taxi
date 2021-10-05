@@ -28,7 +28,6 @@ const sendEmail = async (email, subject, data) => {
             viewPath: "./views",
             extName: ".hbs"
         }));
-
         await trasporter.sendMail({
             from: process.env.USER,
             to: email,
