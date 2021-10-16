@@ -4,21 +4,27 @@ const jwt = require("jsonwebtoken");
 const route = async (req, res, next) => {
     let auth = req.header('Authorization');
     if (!auth)
-        return res.status(401).send("Unauthorized_1")
+        return res.sendStatus(401).send({ status: false, message: "Unauthorized_1" })
     auth = auth.split(" ")[1];
     if (!auth)
-        return res.status(401).send(`Unauthorized_2`);
-    let { _id , o_id } = await jwt.verify(auth, process.env.TOKEN_KEY);
-    if (!_id && !o_id)
-        return res.status(401).send(`Unauthorized_3`);
-    if (_id) {
-        req._client = _id;
-        return next();
-    }
-    if(o_id){
-        req.o_client = o_id;
-        return next();
-    }
-    return res.status(401).send({ message: "Unauthorized_4" })
+        return res.sendStatus(401).send({ status: false, message: `Unauthorized_2` });
+    await jwt.verify(auth, process.env.TOKEN_KEY, (err, user) => {
+        if (err)
+            return res.status(403).send({ status: false, message: "Unauthorized_3" });
+        if (!user._id)
+            return res.status(401).send({ status: false, message: `Unauthorized_3_id` });
+        if (user._id) {
+            req._client = user._id;
+            return next();
+        }
+        if (!user.o_id)
+            return res.status(401).send({ status: false, message: `Unauthorized_3_o_id` })
+        if (user.o_id) {
+            req.o_client = user.o_id;
+            return next();
+        }
+    });
+
+
 }
 module.exports = route;
